@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function getData() {
     fetch("http://localhost:3000/beers")
       .then((resp) => resp.json())
-      .then((data) => listBeer(data));
+      .then((data) => listBeer(data))
+      .then((data) => addDescription(data))
   }
-
+  
   function listBeer(data) {
     for (const names of data) {
       const unList = document.querySelector("#beer-list");
@@ -14,10 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
       list.innerHTML = `
         <h5>${names.name}</h5>
          `;
-      ulList.append(list);
+      unList.append(list);
     }
   }
   
   getData();
+
+  function addDescription(data){
+
+  }
 
 });
