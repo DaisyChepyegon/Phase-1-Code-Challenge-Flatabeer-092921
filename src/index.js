@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   fetchData();
+  
 
 });
 //fetch beers
@@ -41,5 +42,27 @@ fetch('http://localhost:3000/beers/1')
      const beerName = document.querySelector("#beer-name").innerHTML = data.name
      const beerImage = document.querySelector("#beer-image").setAttribute("src", data.image_url)
      const beerReviews = document.querySelector("#review-list").innerText = data.reviews
+})
+
+document.querySelector("#review-form").addEventListener('Submit',handleSubmit)
+
+function handleSubmit(e){
+  e.preventDefault();
+  let reviewData={
+    reviews:e.target.reviews.value
+  }
+  getReview(reviewData)
 }
-    )
+
+
+function getReview(reviewData){
+  fetch("http://localhost:3000/beers",{
+    method:"post",
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(reviewData)
+  })
+  .then(res=> res.json)
+  .then(reviews => console.log(reviews))
+}
