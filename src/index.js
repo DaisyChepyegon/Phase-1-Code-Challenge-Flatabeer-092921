@@ -37,10 +37,9 @@ function listBeers(data) {
 fetch('http://localhost:3000/beers/1')
 .then(res => res.json())
 .then (data =>
-  {  const description = document.querySelector('#beer-description').textContent = data.description
-     const name = document.querySelector("#beer-name").innerHTML = data.name
-     const image = document.querySelector("#beer-image").src = data.image_url
-     const reviews = document.querySelector("#review-list").innerText = data.reviews
-   //console.log(reviews)
+  {  const beerDescription = document.querySelector('#beer-description').textContent = data.description
+     const beerName = document.querySelector("#beer-name").innerHTML = data.name
+     const beerImage = document.querySelector("#beer-image").setAttribute("src", data.image_url)
+     const beerReviews = document.querySelector("#review-list").innerText = data.reviews
 }
     )
